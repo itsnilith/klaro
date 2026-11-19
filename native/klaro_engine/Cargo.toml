@@ -1,0 +1,18 @@
+[package]
+name = "klaro_engine"
+version = "1.0.0"
+edition = "2021"
+license = "AGPL-3.0-only"
+authors = ["itsnilith"]
+description = "Native performance engine for Klaro: FNV-1a/SHA-256 content hashing, sentence-aware text chunking, BM25 lexical scoring, and cosine vector similarity."
+
+[lib]
+name = "klaro_engine"
+crate-type = ["cdylib", "rlib"]
+
+[profile.release]
+opt-level = 3
+lto = "thin"
+codegen-units = 1
+strip = "symbols"
+panic = "abort"

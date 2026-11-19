@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 660 256" role="img" aria-label="klaro.">
+  <title>klaro. wordmark</title>
+  <rect width="256" height="256" rx="58" fill="#18181B"/>
+  <g fill="#FFFFFF">
+    <rect x="46" y="54" width="33" height="146" rx="4.5"/>
+    <polygon points="89,132 118,91 156,91 120,135 158,200 119,200 89,152"/>
+    <circle cx="194" cy="182" r="18.5"/>
+  </g>
+  <text x="300" y="152" font-family="Inter, Segoe UI, sans-serif" font-size="96" font-weight="700"
+        letter-spacing="-3" fill="#18181B">klaro.</text>
+</svg>
