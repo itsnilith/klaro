@@ -140,12 +140,12 @@ Keep explanations clear, practical, and easy to follow while applying research-b
     aiSimpleMode = b('ai_simple', true);
     onboardingDone = b('onboarding', false);
     aiGlobalInstructions = s('ai_global_instructions') ?? defaultGlobalAiPrompt;
-    // The study-method prompt is versioned: an older install must receive the
-    // current method guidance instead of keeping a stale one-paragraph prompt.
-    final promptVersion = s('ai_prompt_version');
-    if (promptVersion != '3') {
-      aiGlobalInstructions = defaultGlobalAiPrompt;
-      await Store.i.metaSet('ai_global_instructions', defaultGlobalAiPrompt);
+    // With no stored preference, use the current built-in prompt. Older stores
+    // did not distinguish edited text from a saved default, so keep all stored
+    // values (including an intentionally empty field). Reset in Settings opts
+    // back in to the current default.
+    final promptVersion = int.tryParse(s('ai_prompt_version') ?? '');
+    if (promptVersion == null || promptVersion < 3) {
       await Store.i.metaSet('ai_prompt_version', '3');
     }
     transcriptionBackend = s('transcription_backend') ?? 'none';

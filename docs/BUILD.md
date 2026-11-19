@@ -56,6 +56,21 @@ Copy-Item $root\build\flutter_assets\* "$root\build\windows\x64\runner\Release\d
 
 Then run `tool\package.ps1` as usual.
 
+The Dart-only fallback still needs the native asset hooks to complete. In particular,
+`pdfium_dart` can try to rebuild `pdfrx_pdfium_gate.dll` even though the runner is
+reused. A local validation build may use an isolated copy of the project and a
+local `pubspec_overrides.yaml` for that package, with the hook registering the two
+existing, matching Windows x64 DLLs under the original asset IDs. Do not disable
+native assets or ship a bundle without its native asset manifest. Keep the published
+build instructions above as the normal path for a clean release.
+
+When validating changes on a host with an existing portable installation, stage into
+a fresh directory instead of repackaging in place. Verify that the native asset IDs and
+DLL hashes match the previous release bundle, and that no writable app data is copied.
+The Inno compiler accepts
+`/DPortableSource=<staged portable folder>` and `/O<output folder>` to build from
+that staged folder without overwriting an existing installer.
+
 ## Verification performed
 
 - `flutter analyze` — no errors.

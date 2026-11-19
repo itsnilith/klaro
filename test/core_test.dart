@@ -6,10 +6,11 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:klaro/core/db.dart';
 import 'package:klaro/core/models.dart';
 import 'package:klaro/core/native_engine.dart';
-import 'package:klaro/core/paths.dart';
 import 'package:klaro/services/rag.dart';
 import 'package:klaro/services/sync.dart';
 import 'package:klaro/services/transcription.dart';
+
+import 'test_paths.dart';
 
 void main() {
   group('Rust FFI native engine', () {
@@ -85,7 +86,7 @@ void main() {
 
   group('portable paths & SQLite persistence', () {
     test('creates the portable layout and persists courses, notes, and SM-2 cards', () async {
-      final paths = AppPaths.init();
+      final paths = testPaths();
       for (final dir in [
         paths.dataDir,
         paths.configDir,

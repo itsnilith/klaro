@@ -20,9 +20,9 @@ If the application folder is read-only, the same layout is created under
 
 Klaro makes a network request only when:
 
-1. You send a message to a configured AI provider.
+1. You use an AI feature with a configured provider, including generating embeddings when indexing with an embedding model.
 2. You start or join a device pairing session.
-3. You ask to download a model through Ollama.
+3. You ask to download a model through Ollama or download a Whisper model.
 4. You open an external link.
 
 There is no telemetry, no crash reporting, no update check and no analytics endpoint in
@@ -41,6 +41,11 @@ When you send a message, the request contains:
 
 The Tutor screen states which provider is active and what will be sent. Turning off
 "Search my notes" or "Search library files" removes those passages from the request.
+
+Passage AI in the resource viewer sends the text you paste or type, the selected
+action's instructions, and your global AI instructions if set. It does not send the
+rest of the resource or look through other notes. When indexing with an embedding
+model, the provider receives extracted text chunks from the resource being indexed.
 
 Ollama on `127.0.0.1` keeps the request on the machine. A cloud endpoint receives it.
 
